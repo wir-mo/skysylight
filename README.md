@@ -9,7 +9,7 @@ It is also easily extensible to suit you needs. With the easy to use serial inte
 
 ## Installation:
 - Clone the SkysyLight repository to your local machine.
-- Create a virtual environment using `pyvenv venv` and activate it with `venv\Scripts\activate` on Windows or `source venv/bin/activate on` Unix-like systems.
+- Create a virtual environment using `python -m venv venv` and activate it with `venv\Scripts\activate` on Windows or `source venv/bin/activate` on Unix-like systems.
 - Install the required Python packages using `pip install -r requirements.txt`.
 - Run the main.py script to start syncing your Skype for Business presence status with the LED light.
 
