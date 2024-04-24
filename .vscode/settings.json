@@ -1,0 +1,22 @@
+{
+    "cSpell.words": [
+        "hwid",
+        "loguru",
+        "Lync",
+        "MEIPASS",
+        "pystray",
+        "pywinusb",
+        "skysy",
+        "statemachine"
+    ],
+    "files.associations": {
+        ".clang-tidy": "yaml",
+        "iostream": "cpp",
+        "map": "cpp",
+        "vector": "cpp"
+    },
+    "cmake.configureSettings": {
+        "CMAKE_BUILD_TYPE": "${buildType}"
+    },
+    "cmake.generator": "Ninja",
+}
