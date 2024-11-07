@@ -15,6 +15,7 @@ import threading
 import struct
 import serial
 import serial.tools.list_ports
+from serial.tools.list_ports_common import ListPortInfo
 import pystray
 from pystray import Menu, MenuItem as Item
 from PIL import Image
@@ -98,15 +99,19 @@ def send_command(ser, *args) -> bool:
 
 
 def ping_light(ser) -> bool:
-    command = struct.pack("B", 0x01)
+    command = struct.pack("B", 0x01, 0x0A)
     ser.write(command)
     response = ser.read(1)
     return response == b"\x42"
 
 
-def find_device_port(ports: list[any]) -> any:
+def find_device_port(ports: list[ListPortInfo]) -> any:
     for port in ports:
-        # logger.info(f'Port: {port.hwid}, {port.name}, {port.vid}, {port.pid}, {port.manufacturer}')
+        # logger.info(
+        #     f"Port: {port.hwid}, {port.name}, {port.vid}, {port.pid}, {port.manufacturer}"
+        # )
+        if port.vid == 0x303A and port.pid == 0x81F9:
+            return port
         if "CH340" in port.description:
             try:
                 ser = serial.Serial(port.device, 115200, timeout=1)
@@ -142,32 +147,32 @@ def update_icon(tray: pystray.Icon, presence: int):
 
 def update_light(ser: serial.Serial, presence: int, incoming_call: bool):
     if incoming_call:
-        send_command(ser, 0x03, 0xFF, 0x00, 0x00)
+        send_command(ser, 0x03, 0xFF, 0x00, 0x00, 0x0A)
         return
 
     if presence == 0 or presence == 18500:
         # Offline
-        send_command(ser, 0x02, 0x00, 0x00, 0x00)
+        send_command(ser, 0x02, 0x00, 0x00, 0x00, 0x0A)
 
     elif presence == 3500:
         # Available
-        send_command(ser, 0x02, 0x00, 0xFF, 0x00)
+        send_command(ser, 0x02, 0x00, 0xFF, 0x00, 0x0A)
 
     elif presence == 6500 or presence == 7500:
         # Busy
-        send_command(ser, 0x02, 0xFF, 0x00, 0x00)
+        send_command(ser, 0x02, 0xFF, 0x00, 0x00, 0x0A)
 
     elif presence == 1250 or presence == 5000 or presence == 15500:
         # Not at work
-        send_command(ser, 0x02, 0xFF, 0xFF, 0x00)
+        send_command(ser, 0x02, 0xFF, 0xFF, 0x00, 0x0A)
 
     elif presence == 6000 or presence == 9500:
         # Do not disturb
-        send_command(ser, 0x02, 0xFF, 0x00, 0x00)
+        send_command(ser, 0x02, 0xFF, 0x00, 0x00, 0x0A)
 
     elif presence == 12500:
         # Back again soon
-        send_command(ser, 0x02, 0x00, 0x00, 0xFF)
+        send_command(ser, 0x02, 0x00, 0x00, 0xFF, 0x0A)
 
 
 def update_light1():
