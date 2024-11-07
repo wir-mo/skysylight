@@ -13,6 +13,9 @@ It is also easily extensible to suit you needs. With the easy to use serial inte
 - Install the required Python packages using `pip install -r requirements.txt`.
 - Run the main.py script to start syncing your Skype for Business presence status with the LED light.
 
+### Building single file exe
+Run `pyinstaller -F --add-binary Microsoft.Lync.Controls.dll:. --add-binary Microsoft.Lync.Model.dll:. --add-binary Microsoft.Office.Uc.dll:. --add-data gray.png:. --add-data green.png:. --add-data red.png:. --add-data yellow.png:. .\main.py` within the windows folder
+
 ## Usage:
 - Connect the SkysyLight board to your computer via USB.
 - Launch SkysyLight and verify that your Skype for Business presence status is being synchronized with the LED light.
