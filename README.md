@@ -2,6 +2,7 @@
 SkysyLight is a versatile system for integrating your Skype for Business presence status with an external LED light, allowing you to visually signal your availability to colleagues at a glance.
 It is also easily extensible to suit you needs. With the easy to use serial interface there are endless possibilities as an indicator for other applications.
 
+<img src="https://github.com/user-attachments/assets/7dceaa10-4ed0-4d24-b9cc-97878dcbd088" data-canonical-src="https://github.com/user-attachments/assets/7dceaa10-4ed0-4d24-b9cc-97878dcbd088" width="500" />
 <a href="https://www.tindie.com/products/wirmo/skysylight/?ref=offsite_badges&utm_source=sellers_enwi&utm_medium=badges&utm_campaign=badge_large"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-larges.png" alt="I sell on Tindie" width="200" height="104"></a>
 
 ## Features:
